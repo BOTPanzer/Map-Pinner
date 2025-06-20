@@ -160,7 +160,7 @@ const mapDrag = new DragListener(document, translate)
 
 //Apply settings zoom
 map.setAttribute('zoom', settings.zoom)
-map.setAttribute('pin-opacity', Util.clamp(settings.zoom - 1, 0, 1))
+map.setAttribute('pin-opacity', Util.clamp(settings.zoom - 2, 0, 1))
 
 //Zoom function
 function zoom(event) {
@@ -176,7 +176,7 @@ function zoom(event) {
 
     //Update map zoom
     map.setAttribute('zoom', settings.zoom)
-    map.setAttribute('pin-opacity', Util.clamp(settings.zoom - 1, 0, 1))
+    map.setAttribute('pin-opacity', Util.clamp(settings.zoom - 2, 0, 1))
 
     //Get mouse & map positions (origin on screen center)
     const mousePosition = Util.centerMousePosition(Util.getPositionFromEvent(event))
