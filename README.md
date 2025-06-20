@@ -20,6 +20,10 @@ On the top left menu, click on the plus button. You can customize categories by 
 
 Double anywhere on the map to create a pin. Clicking an existing pin opens a menu where you can customize its name, description and category.
 
+### Deleting categories and pins
+
+Left click on a category or a pin to delete it.
+
 ### Loading/Saving data
 
 On the top left menu, click on the load or save buttons to select or download a backup of your categories and pins.  
