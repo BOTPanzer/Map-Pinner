@@ -314,14 +314,15 @@ textarea {
 }
 
 .pin > span {
-    --textSize: 300px;
+    --textSize: 200px;
 
     /* Size */
     width: var(--textSize);
+    height: var(--textSize);
 
     /* Layout */
     position: absolute;
-    bottom: -25px;
+    bottom: calc(-1 * var(--textSize));
     left: calc(var(--textSize) / -2 + 50%);
 
     /* Text */
