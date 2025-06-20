@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Pinner</title>
+
+    <!-- Style -->
+    <link rel="stylesheet" href="CSS/style.css">
+
+    <!-- Logic -->
+    <script src="JS/util.js"></script>
+</head>
+
+
+
+<!-- Body -->
+<body oncontextmenu="event.preventDefault()">
+    <!-- Map -->
+    <div id="map" zoom="1" posX="100px" posY="0">
+        <div id="mapPins"></div>
+        <img id="mapImage" src="Data/Images/seoul.svg">
+    </div>
+
+    <!-- Categories menu -->
+    <div id="categoriesMenu" class="menu" hidden onmousedown="event.stopPropagation()" onscroll="event.stopPropagation()">
+        <!-- Toggle menu button -->
+        <div id="categoriesButtons">
+            <img class="menuButton" src="Data/Images/menu.webp" onclick="toggleCategoriesMenu()">
+            <img class="menuButton" src="Data/Images/photo.webp" title="Load Map Image" onclick="document.getElementById('categoriesPhoto').click()">
+            <img class="menuButton" src="Data/Images/restore.webp" title="Load Data" onclick="document.getElementById('categoriesRestore').click()">
+            <img class="menuButton" src="Data/Images/backup.webp" title="Save Data" onclick="onBackupData()">
+            
+            <!-- Hidden buttons for file selection -->
+            <input id="categoriesPhoto" type="file" accept="image/*" onchange="onMapImage(event)">
+            <input id="categoriesRestore" type="file" accept="application/json" onchange="onRestoreData(event)">
+        </div>
+
+        <!-- Categories list -->
+        <div id="categoriesList"></div>
+
+        <!-- Add category button -->
+        <img class="menuButton" src="Data/Images/add.webp" onclick="createCategory()">
+    </div>
+
+    <!-- Pin menu -->
+    <div id="pinMenu" class="menu" hidden onmousedown="event.stopPropagation()">
+        <!-- Close button -->
+        <img class="menuButton" src="Data/Images/close.webp" onclick="hidePinMenu()">
+
+        <!-- Name -->
+        <div>
+            <span>Name</span>
+            <input id="pinMenuName" type="text" spellcheck="false" autocomplete="off">
+        </div>
+
+        <!-- Description -->
+        <div>
+            <span>Description</span>
+            <textarea id="pinMenuDescription" spellcheck="false"></textarea>
+        </div>
+
+        <!-- Category -->
+        <div>
+            <span>Category</span>
+            <div id="pinMenuCategories"></div>
+        </div>
+    </div>
+</body>
+
+
+
+<!-- Logic -->
+<script src="JS/script.js"></script>
+</html>

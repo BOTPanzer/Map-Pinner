@@ -1,0 +1,399 @@
+@font-face { font-family: Poppins; src: url('../Data/Fonts/Poppins.ttf'); }
+
+html {
+    --bg: #0e1415;
+    --menu: #1a2121;
+    --button: #2a3838;
+    --text: #dde4e3;
+    --textFilter: brightness(0) saturate(100%) invert(94%) sepia(9%) saturate(98%) hue-rotate(122deg) brightness(99%) contrast(88%);
+    --accent: #80d4d5;
+    
+    /* Size */
+    width: 100vw;
+    height: 100vh;
+
+    /* Spacing */
+    margin: 0;
+    padding: 0;
+
+    /* Text */
+    color: var(--text);
+    font-size: 16px;
+    font-family: Poppins;
+
+    /* Visuals */
+    background-color: var(--bg);
+
+    /* Other */
+    user-select: none;
+}
+
+body {
+    /* Size */
+    width: 100vw;
+    height: 100vh;
+
+    /* Spacing */
+    margin: 0;
+    padding: 0;
+
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+img {
+    /* Other */
+    -webkit-user-drag: none;
+}
+
+/* Text inputs */
+input[type='text'],
+textarea {
+    /* Spacing */
+    padding: 10px;
+
+    /* Text */
+    color: var(--text);
+    font-size: 16px;
+    font-family: Poppins;
+
+    /* Visuals */
+    background-color: var(--button);
+    border-radius: 10px;
+    outline: none;
+    border: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    /* Size */
+    width: 14px;
+    height: 14px;
+}
+
+::-webkit-scrollbar-thumb {
+    /* Visuals */
+    background-color: var(--text);
+    border-radius: 7px;
+    border: solid 4px transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    /* Visuals */
+    border: solid 3px transparent;
+}
+
+
+ /*$      /$$                    
+| $$$    /$$$                    
+| $$$$  /$$$$  /$$$$$$   /$$$$$$ 
+| $$ $$/$$ $$ |____  $$ /$$__  $$
+| $$  $$$| $$  /$$$$$$$| $$  \ $$
+| $$\  $ | $$ /$$__  $$| $$  | $$
+| $$ \/  | $$|  $$$$$$$| $$$$$$$/
+|__/     |__/ \_______/| $$____/ 
+                       | $$      
+                       | $$      
+                       |_*/      
+
+#map {
+    --size: min(100vh, 100vw);
+    --zoom: attr(zoom type(<number>));
+    --x: calc(attr(posX type(<length>)) / var(--zoom));
+    --y: calc(attr(posY type(<length>)) / var(--zoom));
+    --pin-opacity: attr(pin-opacity type(<number>));
+    
+    /* Size */
+    width: var(--size);
+    height: var(--size);
+
+    /* Layout */
+    position: relative;
+
+    /* Other */
+    scale: var(--zoom);
+    transform: translateX(var(--x)) translateY(var(--y));
+}
+
+#map > img {
+    /* Size */
+    width: 100%;
+    height: 100%;
+
+    /* Image */
+    object-fit: contain;
+}
+
+
+
+ /*$      /$$                                        
+| $$$    /$$$                                        
+| $$$$  /$$$$  /$$$$$$  /$$$$$$$  /$$   /$$  /$$$$$$$
+| $$ $$/$$ $$ /$$__  $$| $$__  $$| $$  | $$ /$$_____/
+| $$  $$$| $$| $$$$$$$$| $$  \ $$| $$  | $$|  $$$$$$ 
+| $$\  $ | $$| $$_____/| $$  | $$| $$  | $$ \____  $$
+| $$ \/  | $$|  $$$$$$$| $$  | $$|  $$$$$$/ /$$$$$$$/
+|__/     |__/ \_______/|__/  |__/ \______/ |______*/ 
+
+.menu {
+    /* Spacing */
+    padding: 20px;
+
+    /* Layout */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    /* Visuals */
+    background-color: var(--menu);
+    border-radius: 20px;
+
+    /* Other */
+    transition: opacity .2s;
+}
+
+.menuButton {
+    /* Size */
+    width: 40px;
+    height: 40px;
+
+    /* Spacing */
+    padding: 4px;
+
+    /* Layout */
+    box-sizing: border-box;
+
+    /* Visuals */
+    border: solid 2px transparent;
+    border-radius: 20px;
+    filter: var(--textFilter);
+
+    /* Other */
+    cursor: pointer;
+    transition: border .2s;
+}
+
+.menuButton:hover {
+    /* Visuals */
+    border: solid 2px var(--text);
+}
+
+
+
+  /*$$$$$              /$$                                             /$$                    
+ /$$__  $$            | $$                                            |__/                    
+| $$  \__/  /$$$$$$  /$$$$$$    /$$$$$$   /$$$$$$   /$$$$$$   /$$$$$$  /$$  /$$$$$$   /$$$$$$$
+| $$       |____  $$|_  $$_/   /$$__  $$ /$$__  $$ /$$__  $$ /$$__  $$| $$ /$$__  $$ /$$_____/
+| $$        /$$$$$$$  | $$    | $$$$$$$$| $$  \ $$| $$  \ $$| $$  \__/| $$| $$$$$$$$|  $$$$$$ 
+| $$    $$ /$$__  $$  | $$ /$$| $$_____/| $$  | $$| $$  | $$| $$      | $$| $$_____/ \____  $$
+|  $$$$$$/|  $$$$$$$  |  $$$$/|  $$$$$$$|  $$$$$$$|  $$$$$$/| $$      | $$|  $$$$$$$ /$$$$$$$/
+ \______/  \_______/   \___/   \_______/ \____  $$ \______/ |__/      |__/ \_______/|_______/ 
+                                         /$$  \ $$                                            
+                                        |  $$$$$$/                                            
+                                         \_____*/                                             
+
+.category {
+    --size: 40px;
+    --color: attr(color type(<color>));
+
+    /* Size */
+    height: var(--size);
+    min-height: 40px;
+
+    /* Layout */
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.category > input[type='color'],
+.category > input[type='color']::-webkit-color-swatch {
+    /* Size */
+    width: var(--size);
+    height: var(--size);
+
+    /* Spacing */
+    padding: 0;
+
+    /* Visuals */
+    border-radius: 20px;
+    background-color: var(--color);
+    appearance: none;
+    border: none;
+
+    /* Other */
+    cursor: pointer;
+}
+
+.category > input[type='text'] {
+    /* Size */
+    /*width: calc(var(--size) * 4);*/
+    width: 0;
+    flex: 1;
+    height: calc(var(--size) / 2);
+}
+
+#categoriesMenu {
+    /* Size */
+    max-height: calc(100% - 40px);
+
+    /* Layout */
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+#categoriesMenu[hidden] *:not(:nth-child(1)) {
+    /* Layout */
+    display: none;
+}
+
+#categoriesButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+#categoriesButtons > input {
+    display: none;
+}
+
+#categoriesList {
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+}
+
+#categoriesList:empty {
+    /* Layout */
+    display: none;
+}
+
+
+
+ /*$$$$$$  /$$                    
+| $$__  $$|__/                    
+| $$  \ $$ /$$ /$$$$$$$   /$$$$$$$
+| $$$$$$$/| $$| $$__  $$ /$$_____/
+| $$____/ | $$| $$  \ $$|  $$$$$$ 
+| $$      | $$| $$  | $$ \____  $$
+| $$      | $$| $$  | $$ /$$$$$$$/
+|__/      |__/|__/  |__/|______*/ 
+
+.pin {
+    --size: 15px;
+    --x: calc(attr(posX type(<number>)) / var(--zoom));
+    --y: calc(attr(posY type(<number>)) / var(--zoom));
+    --color: attr(color type(<color>));
+
+    /* Size */
+    width: var(--size);
+    height: var(--size);
+
+    /* Layout */
+    position: absolute;
+    left: calc((var(--x) * 100%) * var(--zoom) - var(--size) / 2);
+    top: calc((var(--y) * 100% ) * var(--zoom) - var(--size) / 2);
+
+    /* Visuals */
+    background-color: var(--color);
+    border-radius: 10px;
+
+    /* Other */
+    cursor: pointer;
+    scale: calc(1 / var(--zoom));
+}
+
+.pin > span {
+    --textSize: 300px;
+
+    /* Size */
+    width: var(--textSize);
+
+    /* Layout */
+    position: absolute;
+    bottom: -25px;
+    left: calc(var(--textSize) / -2 + 50%);
+
+    /* Text */
+    text-align: center;
+    text-shadow:
+        1px 1px 2px black,
+        0 0 1em black,
+        0 0 0.2em black;
+
+    /* Visuals */
+    opacity: var(--pin-opacity);
+
+    /* Other */
+    pointer-events: none;
+}
+
+.pinCategory {
+    --size: 40px;
+    --color: attr(color type(<color>));
+
+    /* Size */
+    width: var(--size);
+    min-width: var(--size);
+    height: var(--size);
+    min-height: var(--size);
+
+    /* Visuals */
+    background-color: var(--color);
+    border-radius: 20px;
+
+    /* Other */
+    cursor: pointer;
+}
+
+#pinMenu {
+    /* Size */
+    width: 400px;
+
+    /* Layout */
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+#pinMenu[hidden] {
+    /* Visuals */
+    opacity: 0;
+    pointer-events: none;
+}
+
+#pinMenu > .menuButton {
+    /* Layout */
+    margin-left: auto;
+}
+
+#pinMenu > div {
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#pinMenu textarea {
+    /* Size */
+    height: 80px;
+    resize: none;
+}
+
+#pinMenuCategories {
+    /* Layout */
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    overflow-x: auto;
+}
