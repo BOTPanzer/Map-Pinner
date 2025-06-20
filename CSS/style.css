@@ -200,6 +200,14 @@ textarea {
     border: solid 2px var(--text);
 }
 
+#socialMenu {
+    /* Layout */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    flex-direction: row;
+}
+
 
 
   /*$$$$$              /$$                                             /$$                    
