@@ -102,22 +102,27 @@ textarea {
                        |_*/      
 
 #map {
-    --size: min(100vh, 100vw);
-    --zoom: attr(zoom type(<number>));
-    --x: calc(attr(posX type(<length>)) / var(--zoom));
-    --y: calc(attr(posY type(<length>)) / var(--zoom));
+    --mapResolution: 10; /* Helps with resolution errors when zooming */
+    --mapSize: calc(min(100vh, 100vw) * var(--mapResolution));
+    --mapZoom: attr(zoom type(<number>));
+    --mapX: calc(attr(posX type(<length>)) / var(--zoom));
+    --mapY: calc(attr(posY type(<length>)) / var(--zoom));
+
+    --zoom: calc(attr(zoom type(<number>)) / var(--mapResolution));
     --pin-opacity: attr(pin-opacity type(<number>));
     
     /* Size */
-    width: var(--size);
-    height: var(--size);
+    width: var(--mapSize);
+    min-width: var(--mapSize);
+    height: var(--mapSize);
+    min-height: var(--mapSize);
 
     /* Layout */
     position: relative;
 
     /* Other */
-    scale: var(--zoom);
-    transform: translateX(var(--x)) translateY(var(--y));
+    scale: calc(1 / var(--mapResolution) * var(--mapZoom));
+    transform: translateX(var(--mapX)) translateY(var(--mapY));
 }
 
 #map > img {
@@ -127,6 +132,17 @@ textarea {
 
     /* Image */
     object-fit: contain;
+}
+
+#mapPins {
+    /* Size */
+    width: 100%;
+    height: 100%;
+
+    /* Layout */
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 
@@ -293,24 +309,42 @@ textarea {
     --size: 15px;
     --x: calc(attr(posX type(<number>)) / var(--zoom));
     --y: calc(attr(posY type(<number>)) / var(--zoom));
+    --posX: calc(var(--x) * 100% * var(--zoom));
+    --posY: calc(var(--y) * 100% * var(--zoom));
     --color: attr(color type(<color>));
 
+    /* Size */
+    width: 100%;
+    height: 100%;
+
+    /* Layout */
+    position: relative;
+}
+
+.pin:not(:nth-child(1)) {
+    /* Spacing */
+    margin-top: -100%;
+}
+
+.pin > div {
     /* Size */
     width: var(--size);
     height: var(--size);
 
     /* Layout */
     position: absolute;
-    left: calc((var(--x) * 100%) * var(--zoom) - var(--size) / 2);
-    top: calc((var(--y) * 100% ) * var(--zoom) - var(--size) / 2);
+    left: var(--posX);
+    top: var(--posY);
 
     /* Visuals */
     background-color: var(--color);
     border-radius: 10px;
 
     /* Other */
+    z-index: 2;
     cursor: pointer;
     scale: calc(1 / var(--zoom));
+    transform-origin: center;
 }
 
 .pin > span {
@@ -322,8 +356,8 @@ textarea {
 
     /* Layout */
     position: absolute;
-    bottom: calc(-1 * var(--textSize));
-    left: calc(var(--textSize) / -2 + 50%);
+    left: calc(var(--posX) - var(--textSize) / 2);
+    top: calc(var(--posY) + 15px);
 
     /* Text */
     text-align: center;
@@ -336,7 +370,10 @@ textarea {
     opacity: var(--pin-opacity);
 
     /* Other */
+    z-index: 1;
     pointer-events: none;
+    scale: calc(1 / var(--zoom));
+    transform-origin: center top;
 }
 
 .pinCategory {
@@ -387,8 +424,20 @@ textarea {
 
 #pinMenu textarea {
     /* Size */
-    height: 80px;
+    height: 60px;
     resize: none;
+}
+
+#pinMenuLinkLayout {
+    /* Layout */
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#pinMenuLinkLayout > input {
+    /* Size */
+    flex: 1;
 }
 
 #pinMenuCategories {

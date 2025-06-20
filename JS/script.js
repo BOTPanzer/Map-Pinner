@@ -12,6 +12,7 @@ const mapImage = document.getElementById('mapImage')
 const categoriesMenu = document.getElementById('categoriesMenu')
 const pinMenu = document.getElementById('pinMenu')
 const pinMenuName = document.getElementById('pinMenuName')
+const pinMenuLink = document.getElementById('pinMenuLink')
 const pinMenuDescription = document.getElementById('pinMenuDescription')
 
 
@@ -433,26 +434,23 @@ const pinsAdapter = new ListAdapter(document.getElementById('mapPins'), pinsList
     if (!pin.category || !categories[pin.category]) pin.category = categoriesList[0].id
     element.setAttribute('color', categories[pin.category].color)
 
-    //Create element name
-    if (pin.name) {
-        const name = document.createElement('span')
-        name.innerText = pin.name
-        element.append(name)
-    }
+    //Create pin color element
+    const color = document.createElement('div')
+    element.append(color)
 
     //Prevent background clicks
-    element.ondblclick = (event) => {
+    color.ondblclick = (event) => {
         event.stopPropagation()
     }
 
     //Show menu on click
-    element.onclick = (event) => {
+    color.onclick = (event) => {
         event.stopPropagation()
         showPinMenu(pin.id)
     }
 
     //Delete pin on right click
-    element.oncontextmenu = (event) => {
+    color.oncontextmenu = (event) => {
         event.stopPropagation()
         event.preventDefault()
 
@@ -467,6 +465,13 @@ const pinsAdapter = new ListAdapter(document.getElementById('mapPins'), pinsList
 
         //Hide pin menu
         hidePinMenu()
+    }
+
+    //Create element name
+    if (pin.name) {
+        const name = document.createElement('span')
+        name.innerText = pin.name
+        element.append(name)
     }
 
     //Bind element
@@ -488,18 +493,23 @@ function showPinMenu(id) {
     pinMenuName.value = pin.name ? pin.name : ""
     pinMenuName.oninput = (event) => {
         pin.name = pinMenuName.value
-    }
-    pinMenuName.onchange = () => {
         savePins()
         pinsAdapter.notifyDataSetChanged()
+    }
+
+    //Update link
+    pinMenuLink.value = pin.link ? pin.link : ""
+    pinMenuLink.oninput = (event) => {
+        pin.link = pinMenuLink.value
+        savePins()
     }
 
     //Update description
     pinMenuDescription.value = pin.description ? pin.description : ""
     pinMenuDescription.oninput = (event) => {
         pin.description = pinMenuDescription.value
+        savePins()
     }
-    pinMenuDescription.onchange = savePins
 
     //Update categories
     pinCategoriesAdapter.onBind = (category) => {
@@ -561,6 +571,9 @@ map.addEventListener('dblclick', (event) => {
         id: mousePositionNormalized.toString(),
         pos: mousePositionNormalized,
         category: categoriesList[0].id,
+        name: '',
+        link: '',
+        description: '',
     }
     addPin(pin)
     showPinMenu(pin.id)
