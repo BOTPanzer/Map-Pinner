@@ -267,12 +267,13 @@ const categoriesAdapter = new ListAdapter(document.getElementById('categoriesLis
         if (index != -1) {
             categoriesList.splice(index, 1)
             categoriesAdapter.notifyItemRemovedAt(index)
+            pinCategoriesAdapter.notifyItemRemovedAt(index)
         }
         delete categories[category.id]
         saveCategories()
 
-        //Hide pin menu
-        hidePinMenu()
+        //Update pins to reset pins that had this category
+        pinsAdapter.notifyDataSetChanged()
     }
 
     //Bind element
@@ -308,11 +309,9 @@ function addCategory(category) {
     categories[category.id] = category
     saveCategories()
 
-    //Notify categories adapter
+    //Notify categories adapters
     categoriesAdapter.notifyItemAddedAt(categoriesList.length - 1)
-
-    //Hide pins
-    hidePinMenu()
+    pinCategoriesAdapter.notifyItemAddedAt(categoriesList.length - 1)
 }
 
 function createCategory() {

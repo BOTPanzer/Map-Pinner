@@ -201,13 +201,15 @@ class ListAdapter {
             this.parent.append(element)
         } else {
             //Not last item -> Append before the child at that index
-            this.parent.insertBefore(this.parent.children[index], element)
+            const child = this.parent.children[index]
+            if (child) this.parent.insertBefore(child, element)
         }
     }
 
     notifyItemRemovedAt(index) {
         //Remove element at index
-        this.parent.children[index].remove()
+        const element = this.parent.children[index]
+        if (element) element.remove()
     }
 
 }
