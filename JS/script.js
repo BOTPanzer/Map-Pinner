@@ -44,6 +44,8 @@ const settings = {
     zoomMax: 10,
 }
 
+mapImage.src = DB.get('image', mapImage.src, DB.STRING)
+
 
 
   /*$$$$$                                                   
@@ -334,6 +336,7 @@ function onMapImage(event) {
     const reader = new FileReader()
     reader.onload = (e) => {
         mapImage.src = e.target.result
+        DB.set('image', mapImage.src)
     }
     reader.readAsDataURL(selectedFile)
 }
