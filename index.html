@@ -26,10 +26,10 @@
     <div id="categoriesMenu" class="menu" hidden onmousedown="event.stopPropagation()" onscroll="event.stopPropagation()">
         <!-- Toggle menu button -->
         <div id="categoriesButtons">
-            <img class="menuButton" src="Data/Images/menu.webp" onclick="toggleCategoriesMenu()">
-            <img class="menuButton" src="Data/Images/photo.webp" title="Load Map Image" onclick="document.getElementById('categoriesPhoto').click()">
-            <img class="menuButton" src="Data/Images/restore.webp" title="Load Data" onclick="document.getElementById('categoriesRestore').click()">
-            <img class="menuButton" src="Data/Images/backup.webp" title="Save Data" onclick="onBackupData()">
+            <img class="menuButton" src="Data/Images/menu.webp" title="Toggle menu" onclick="toggleCategoriesMenu()">
+            <img class="menuButton" src="Data/Images/photo.webp" title="Load map image" onclick="document.getElementById('categoriesPhoto').click()">
+            <img class="menuButton" src="Data/Images/restore.webp" title="Load data" onclick="document.getElementById('categoriesRestore').click()">
+            <img class="menuButton" src="Data/Images/backup.webp" title="Save data" onclick="onBackupData()">
             
             <!-- Hidden buttons for file selection -->
             <input id="categoriesPhoto" type="file" accept="image/*" onchange="onMapImage(event)">
@@ -40,13 +40,13 @@
         <div id="categoriesList"></div>
 
         <!-- Add category button -->
-        <img class="menuButton" src="Data/Images/add.webp" onclick="createCategory()">
+        <img class="menuButton" src="Data/Images/add.webp" title="Add a new category" onclick="createCategory()">
     </div>
 
     <!-- Pin menu -->
     <div id="pinMenu" class="menu" hidden onmousedown="event.stopPropagation()">
         <!-- Close button -->
-        <img class="menuButton" src="Data/Images/close.webp" onclick="hidePinMenu()">
+        <img class="menuButton" src="Data/Images/close.webp" title="Close menu" onclick="hidePinMenu()">
 
         <!-- Name -->
         <div>
