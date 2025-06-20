@@ -2,7 +2,7 @@
 
 ## ✨ Description
 
-**Map Pinner** is a tool designed to help you plan and organize your trips. With **Map Pinner**, you can easily select a map image, place pins on your map & customize each one with custom colors, categories, names, and descriptions.
+**Map Pinner** is a free web tool designed to help you plan and organize your trips. With **Map Pinner** you can easily select a map image, place pins on your map & customize each one with custom colors, categories, names, links, and descriptions.
 
 ## ⚙️ Usage
 
@@ -19,6 +19,10 @@ On the top left menu, click on the plus button. You can customize categories by 
 ### Creating pins
 
 Double anywhere on the map to create a pin. Clicking an existing pin opens a menu where you can customize its name, description and category.
+
+### Deleting categories and pins
+
+Left click on a category or a pin to delete it.
 
 ### Loading/Saving data
 
