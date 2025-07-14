@@ -18,7 +18,7 @@ On the top left menu, click on the plus button. You can customize categories by 
 
 ### Creating pins
 
-Double anywhere on the map to create a pin. Clicking an existing pin opens a menu where you can customize its name, description and category.
+Double click anywhere on the map to create a pin. Clicking an existing pin opens a menu where you can customize its name, description, category...
 
 ### Deleting categories and pins
 
